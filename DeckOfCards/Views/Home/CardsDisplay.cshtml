@@ -1,0 +1,23 @@
+﻿@model CardsModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<form method="post" asp-action="CardsDisplay">
+    Select which cards to keep:<br />
+    @{
+        for (int i = 0; i < Model.cards.Count(); i++)
+        {
+            <img src="@Model.cards[i].image"><p><input type="checkbox" name="keptcards[@i]" value="@i" /></p><br />
+            <input type="hidden" name="cards[@i].image" value="@Model.cards[i].image">
+        }
+
+    //foreach(Card c in Model.cards)
+    //{
+    //    <img src="@c.image" alt="@c.code"><p><input type="checkbox" name="" /></p><br />
+    //}
+}
+<input type="hidden" name="numOfCardsToDraw" value="@Model.cards.Count()" />
+<input type="submit" />
+</form>
+
